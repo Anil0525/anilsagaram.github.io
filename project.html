@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Name | Thumbnail Designer & Web Developer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Portfolio of a YouTube thumbnail designer and web developer."
+  />
+
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    :root {
+      --bg: #050816;
+      --bg-soft: #0b1020;
+      --accent: #ffb703;
+      --accent-soft: rgba(255, 183, 3, 0.15);
+      --text: #f5f5f5;
+      --muted: #a3a3a3;
+      --card: #101426;
+      --border: #1f2933;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.6);
+      --radius-lg: 18px;
+      --radius-full: 999px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Poppins", sans-serif;
+      background: radial-gradient(circle at top, #1a2844 0, #050816 45%, #000 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Layout */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 8, 22, 0.95),
+        rgba(5, 8, 22, 0.6),
+        transparent
+      );
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .logo-badge {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: radial-gradient(circle at top left, #ffb703, #fb8500);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      color: #000;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      color: var(--muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      padding: 0.45rem 1.1rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 183, 3, 0.5);
+      background: linear-gradient(135deg, rgba(255, 183, 3, 0.15), transparent);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.5fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: var(--radius-full);
+      background: rgba(60, 64, 80, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 1.2rem;
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #4ade80;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3vw + 1rem, 3.1rem);
+      line-height: 1.1;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero-title span.highlight {
+      background: linear-gradient(135deg, #ffb703, #fb5607);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 32rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-tag {
+      padding: 0.25rem 0.8rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(15, 23, 42, 0.7);
+      font-size: 0.78rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      padding: 0.7rem 1.4rem;
+      border-radius: var(--radius-full);
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ffb703, #fb5607);
+      color: #000;
+      box-shadow: var(--shadow-soft);
+      font-weight: 600;
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.8);
+      color: var(--text);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .btn-primary span.icon,
+    .btn-ghost span.icon {
+      font-size: 1.1rem;
+    }
+
+    /* Hero right */
+    .hero-card {
+      background: radial-gradient(circle at top left, #1f2937, #020617);
+      border-radius: 26px;
+      padding: 1.2rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at -20% 0, rgba(255, 183, 3, 0.21), transparent 60%);
+      opacity: 0.8;
+      pointer-events: none;
+    }
+
+    .hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-chip {
+      font-size: 0.72rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.8);
+    }
+
+    .hero-status {
+      font-size: 0.75rem;
+      color: #bbf7d0;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .hero-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.8);
+    }
+
+    .hero-thumbnail-preview {
+      position: relative;
+      z-index: 1;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: #020617;
+    }
+
+    .thumb-header {
+      padding: 0.6rem 0.75rem;
+      background: linear-gradient(to right, #020617, #111827);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.7rem;
+    }
+
+    .thumb-title {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .thumb-title span:first-child {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.68rem;
+      color: #e5e7eb;
+    }
+
+    .thumb-title span:last-child {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .thumb-badges {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .thumb-badge {
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.65rem;
+      color: #e5e7eb;
+    }
+
+    .thumb-body {
+      padding: 1rem 1rem 1.1rem;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 0.9rem;
+    }
+
+    .thumb-main-text {
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .thumb-main-text span {
+      background: linear-gradient(135deg, #fb5607, #ffb703);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .thumb-sub-text {
+      margin-top: 0.3rem;
+      font-size: 0.75rem;
+      color: #9ca3af;
+    }
+
+    .thumb-cta-chip {
+      margin-top: 0.7rem;
+      font-size: 0.7rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-full);
+      background: rgba(248, 250, 252, 0.07);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .thumb-thumbnail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.45rem;
+    }
+
+    .thumb-box {
+      border-radius: 10px;
+      padding: 0.35rem;
+      background: radial-gradient(circle at top left, #f97316, #1f2937);
+      font-size: 0.63rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+
+    .thumb-box:nth-child(2) {
+      background: radial-gradient(circle at top left, #22c55e, #0f172a);
+    }
+
+    .thumb-box:nth-child(3) {
+      background: radial-gradient(circle at top left, #0ea5e9, #111827);
+    }
+
+    .thumb-box:nth-child(4) {
+      background: radial-gradient(circle at top left, #e11d48, #020617);
+    }
+
+    .hero-card-footer {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: #9ca3af;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-metrics {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .metric-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .metric-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    /* Section layout */
+    section {
+      padding: 3rem 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 22rem;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 1.3rem 1.2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-pill {
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 0.25rem 0.7rem;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      margin-bottom: 0.6rem;
+      display: inline-block;
+    }
+
+    .service-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.8rem;
+    }
+
+    .service-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: #e5e7eb;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    .service-tag {
+      font-size: 0.72rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    /* Portfolio */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-thumb {
+      height: 130px;
+      background: radial-gradient(circle at top left, #fb5607, #020617);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.7rem;
+    }
+
+    .project-body {
+      padding: 0.8rem 0.9rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .project-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .project-type {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .project-link {
+      font-size: 0.78rem;
+      margin-top: 0.4rem;
+      color: #bfdbfe;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .about-text {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .about-highlight {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    .about-pill {
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      font-size: 0.8rem;
+    }
+
+    .about-stats-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55);
+    }
+
+    .about-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 0.7rem;
+      font-size: 0.85rem;
+    }
+
+    .about-stat-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: #9ca3af;
+    }
+
+    .about-stat-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    /* Contact */
+    .contact-card {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 1.3rem 1.2rem;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+      display: grid;
+      grid-template-columns: minmax(0, 2.5fr) minmax(0, 2fr);
+      gap: 1.4rem;
+    }
+
+    .contact-text {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+    }
+
+    .contact-methods span.label {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .contact-methods a {
+      color: #bfdbfe;
+      font-size: 0.86rem;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      font-size: 0.8rem;
+    }
+
+    .field label {
+      color: #e5e7eb;
+    }
+
+    .field input,
+    .field textarea {
+      background: #020617;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 0.55rem 0.7rem;
+      font-family: inherit;
+      font-size: 0.86rem;
+      color: var(--text);
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(255, 183, 3, 0.4);
+    }
+
+    .contact-submit {
+      align-self: flex-start;
+      margin-top: 0.2rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 1.5rem 0 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      margin-top: 2rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+    }
+
+    .footer-links a {
+      color: #9ca3af;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-grid,
+      .about-grid,
+      .contact-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-card {
+        max-width: 420px;
+        margin: 0 auto;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .services-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+
+      .portfolio-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header>
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">
+          <div class="logo-badge">A</div>
+          <div>
+            <div style="font-size: 0.92rem">Anil Sagaram</div>
+            <div style="font-size: 0.7rem; color: var(--muted)">
+              Thumbnails & Web Dev
+            </div>
+          </div>
+        </div>
+
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#portfolio">Work</a>
+          <a href="#about">About</a>
+          <a href="#contact" class="nav-cta">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            <span>Thumbnail designer & web developer</span>
+          </div>
+
+          <h1 class="hero-title">
+            I design
+            <span class="highlight">scroll-stopping thumbnails</span>
+            & modern websites.
+          </h1>
+
+          <p class="hero-subtitle">
+            I help YouTubers, brands, and creators get more clicks with bold
+            thumbnails and fast, responsive websites that look great on any
+            device.
+          </p>
+
+          <div class="hero-tags">
+            <span class="hero-tag">YouTube Thumbnails</span>
+            <span class="hero-tag">Channel Branding</span>
+            <span class="hero-tag">Landing Pages</span>
+            <span class="hero-tag">Portfolio Websites</span>
+          </div>
+
+          <div class="hero-buttons">
+            <button class="btn-primary" onclick="scrollToSection('contact')">
+              <span>Hire Me</span>
+              <span class="icon">💼</span>
+            </button>
+            <button class="btn-ghost" onclick="scrollToSection('portfolio')">
+              <span>View My Work</span>
+              <span class="icon">🎬</span>
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="hero-card">
+            <div class="hero-card-header">
+              <span class="hero-chip">Creator Dashboard</span>
+              <div class="hero-status">
+                <span class="hero-status-dot"></span>
+                <span>Booking: Open</span>
+              </div>
+            </div>
+
+            <div class="hero-thumbnail-preview">
+              <div class="thumb-header">
+                <div class="thumb-title">
+                  <span>Sample YouTube Thumbnail</span>
+                  <span>Built for click-through rate</span>
+                </div>
+                <div class="thumb-badges">
+                  <div class="thumb-badge">+120% CTR</div>
+                  <div class="thumb-badge">🔥 High Impact</div>
+                </div>
+              </div>
+
+              <div class="thumb-body">
+                <div>
+                  <div class="thumb-main-text">
+                    Turn your videos into
+                    <span>must-click content</span>
+                  </div>
+                  <div class="thumb-sub-text">
+                    Bold text, clean composition, and powerful colors designed
+                    for mobile screens.
+                  </div>
+                  <div class="thumb-cta-chip">
+                    <span>⚡ 24-hour delivery</span>
+                    <span>•</span>
+                    <span>3+ concepts</span>
+                  </div>
+                </div>
+
+                <div class="thumb-thumbnail-grid">
+                  <div class="thumb-box">Gaming</div>
+                  <div class="thumb-box">Education</div>
+                  <div class="thumb-box">Vlogs</div>
+                  <div class="thumb-box">Tech</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hero-card-footer">
+              <div class="hero-metrics">
+                <div>
+                  <div class="metric-label">Projects</div>
+                  <div class="metric-value">50+ </div>
+                </div>
+                <div>
+                  <div class="metric-label">Clients</div>
+                  <div class="metric-value">20+</div>
+                </div>
+              </div>
+              <div>Based in India 🇮🇳</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Services</h2>
+          <p class="section-subtitle">
+            From YouTube thumbnails to complete websites, I can handle your
+            visual identity and online presence end-to-end.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-pill">Thumbnail Design</div>
+            <h3 class="service-title">High-CTR YouTube Thumbnails</h3>
+            <p class="service-desc">
+              Custom thumbnails designed for your niche: strong titles,
+              expressive faces, and colors that pop even on small mobile
+              screens.
+            </p>
+            <div class="service-meta">
+              <span>Delivery: 12–24 hours</span>
+              <span>Revisions: 2 included</span>
+            </div>
+            <div class="service-tags">
+              <span class="service-tag">YouTube</span>
+              <span class="service-tag">Shorts</span>
+              <span class="service-tag">A/B Test Ready</span>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <div class="service-pill">Web Development</div>
+            <h3 class="service-title">Modern Portfolio & Landing Pages</h3>
+            <p class="service-desc">
+              Responsive websites built with clean code and simple UI so your
+              visitors stay longer and convert better.
+            </p>
+            <div class="service-meta">
+              <span>Tech: HTML, CSS, JS</span>
+              <span>Hosting help included</span>
+            </div>
+            <div class="service-tags">
+              <span class="service-tag">Portfolio</span>
+              <span class="service-tag">Personal Brand</span>
+              <span class="service-tag">Small Business</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Selected Work</h2>
+          <p class="section-subtitle">
+            A quick look at some thumbnails and websites I’ve created. Replace
+            these with your real projects and links.
+          </p>
+        </div>
+
+        <div class="portfolio-grid">
+          <!-- Project 1 -->
+          <article class="project-card">
+            <div class="project-thumb">
+              YouTube thumbnail pack for<br />Gaming channel
+            </div>
+            <div class="project-body">
+              <div class="project-name">Gaming Rage Series</div>
+              <div class="project-type">Thumbnail Design</div>
+              <a href="https://www.canva.com/design/DAGouAK4tuc/wdIKGiVxzodTk8Jj9KWVIA/edit" class="project-link"
+                >View full project</a
+              >
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card">
+            <div class="project-thumb" style="
+                background: radial-gradient(circle at top left, #0ea5e9, #020617);
+              ">
+              Educational thumbnails for<br />Study channel
+            </div>
+            <div class="project-body">
+              <div class="project-name">Smart Study Hub</div>
+              <div class="project-type">Thumbnail Design</div>
+              <a href="https://www.canva.com/design/DAG3zZisBEE/JvNSGf3gwxjefxPH8oiyWQ/edit" class="project-link"
+                >View playlist</a
+              >
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card">
+            <div class="project-thumb" style="
+                background: radial-gradient(circle at top left, #22c55e, #020617);
+              ">
+              One-page portfolio website<br />for a creator
+            </div>
+            <div class="project-body">
+              <div class="project-name">Creator Portfolio</div>
+              <div class="project-type">Web Development</div>
+              <a href="https://anilsagaramportfolio.netlify.app/" class="project-link"
+                >Live website (https://anilsagaramportfolio.netlify.app/)</a
+              >
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card">
+            <div class="project-thumb" style="
+                background: radial-gradient(circle at top left, #e11d48, #020617);
+              ">
+              Thumbnail redesign for<br />Vlog channel
+            </div>
+            <div class="project-body">
+              <div class="project-name">Life In Motion</div>
+              <div class="project-type">Thumbnail Design</div>
+              <a href="#" class="project-link"
+                >Before / After </a
+              >
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="project-card">
+            <div class="project-thumb" style="
+                background: radial-gradient(circle at top left, #8b5cf6, #020617);
+              ">
+              Business website landing page
+            </div>
+            <div class="project-body">
+              <div class="project-name">Local Business Site</div>
+              <div class="project-type">Web Development</div>
+              <a href="#" class="project-link"
+                >Live website</a
+              >
+            </div>
+          </article>
+
+          <!-- Project 6 -->
+          <article class="project-card">
+            <div class="project-thumb" style="
+                background: radial-gradient(circle at top left, #facc15, #020617);
+              ">
+              Branding + thumbnails<br />for tech reviews
+            </div>
+            <div class="project-body">
+              <div class="project-name">Tech Unboxed</div>
+              <div class="project-type">Branding & Thumbnails</div>
+              <a href="https://www.youtube.com/@Anil_around" class="project-link"
+                >Channel link (https://www.youtube.com/@Anil_around)</a
+              >
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">About Me</h2>
+          <p class="section-subtitle">
+            Just a quick intro so people know who they’re working with.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div>
+            <p class="about-text">
+              Hi, I’m <strong>Anil Sagaram</strong> – a thumbnail designer and web
+              developer based in India. I love helping creators and small
+              businesses stand out online with clean design and strong visuals.
+            </p>
+            <p class="about-text" style="margin-top: 0.7rem">
+              I focus on simple, bold designs that work great on phones, laptops,
+              and TVs. Whether you need thumbnails for your next video series or
+              a website to showcase your work, I’ve got you covered.
+            </p>
+
+            <div class="about-highlight">
+              <div class="about-pill">Available for freelance work</div>
+              <div class="about-pill">Comfortable with English & Telugu</div>
+              <div class="about-pill">Open to long-term projects</div>
+            </div>
+          </div>
+
+          <aside class="about-stats-card">
+            <div style="font-size: 0.85rem; color: #e5e7eb">
+              Quick Stats
+            </div>
+            <div class="about-stats-grid">
+              <div>
+                <div class="about-stat-label">Experience</div>
+                <div class="about-stat-value">2+ yrs</div>
+              </div>
+              <div>
+                <div class="about-stat-label">Projects done</div>
+                <div class="about-stat-value">50+</div>
+              </div>
+              <div>
+                <div class="about-stat-label">Avg. rating</div>
+                <div class="about-stat-value">4.9/5</div>
+              </div>
+              <div>
+                <div class="about-stat-label">Response time</div>
+                <div class="about-stat-value">&lt; 1 day</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Let’s Work Together</h2>
+          <p class="section-subtitle">
+            Tell me about your channel, brand, or idea. I usually reply within
+            24 hours.
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div>
+            <p class="contact-text">
+              Prefer talking directly? Use any of the options below.
+            </p>
+            <div class="contact-methods">
+              <div>
+                <span class="label">Email: </span>
+                <a href="mailto:thipparallaanil@gmail.com">thipparallaanil@gmail.com</a>
+              </div>
+              <div>
+                <span class="label">WhatsApp: </span>
+                <a href="https://wa.me/7416181220" target="_blank"
+                  >+91-7416181220</a
+                >
+              </div>
+              <div>
+                <span class="label">YouTube: </span>
+                <a href="https://www.youtube.com/@anil_around" target="_blank">anil_around</a>
+              </div>
+              <div>
+                <span class="label">Instagram: </span>
+                <a href="https://www.instagram.com/design_my_click/" target="_blank">@design_my_click</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Simple form (non-functional by default) -->
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('This is a static demo form. Connect it to a backend or form service.');">
+            <div class="field">
+              <label for="name">Name</label>
+              <input id="name" type="text" placeholder="Your name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="message">Project details</label>
+              <textarea
+                id="message"
+                placeholder="Tell me about your thumbnails or website..."
+                required
+              ></textarea>
+            </div>
+            <button class="btn-primary contact-submit" type="submit">
+              <span>Send Message</span>
+              <span class="icon">📩</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>© <span id="year"></span> Anil Sagaram. All rights reserved.</div>
+      <div class="footer-links">
+        <a href="#home">Top</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Work</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Smooth scroll for buttons
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+
+    // Smooth scroll for nav links (for older browsers that support this)
+    document
+      .querySelectorAll('a[href^="#"]')
+      .forEach((link) =>
+        link.addEventListener("click", function (e) {
+          const targetId = this.getAttribute("href").substring(1);
+          const target = document.getElementById(targetId);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: "smooth" });
+          }
+        })
+      );
+  </script>
+</body>
+</html>
